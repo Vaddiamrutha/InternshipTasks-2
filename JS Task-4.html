@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Task 4(21BCE9578)</title>
+  <link rel="stylesheet" href="Styles JS Task-4.css">
+</head>
+<body>
+  <h1>Date and Time Display</h1>
+
+  <button id="showDateBtn" onclick="showDate()">Show Date</button>
+  <p id="displayDate"></p><br/>
+  <button id="showTimeBtn" onclick="showTime()">Show Time</button>
+  <p id="displayTime"></p>
+  <script>
+    function showDate() {
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const month = currentDate.toLocaleString('default', { month: 'long' });
+    const year = currentDate.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    document.getElementById('displayDate').textContent = ` ${formattedDate}`;
+  }
+
+  function showTime() {
+    const currentTime = new Date();
+    const formattedTime = currentTime.toString();
+    document.getElementById('displayTime').textContent = ` ${formattedTime}`;
+  }
+  </script>
+</body>
+</html>

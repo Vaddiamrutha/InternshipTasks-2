@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Task-7(21BCE9578)</title>
+  <style>body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .container {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  #train {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    transition: transform 1s linear;
+  }
+  
+  .buttons {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  h1{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(12, 12, 100);
+  }</style>
+</head>
+<body>
+  <div class="container">
+    <img id="train" src="train.jpeg" alt="Train">
+    <h1>Click the following buttons to handle animation</h1>
+    <div class="buttons">
+      <button id="startButton">Start</button>
+      <button id="stopButton">Stop</button>
+    </div>
+  </div>
+  <script>const train = document.getElementById("train");
+const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
+
+let isMoving = false;
+let animationInterval;
+
+startButton.addEventListener("click", () => {
+  if (!isMoving) {
+    isMoving = true;
+    startAnimation();
+  }
+});
+
+stopButton.addEventListener("click", () => {
+  if (isMoving) {
+    isMoving = false;
+    clearInterval(animationInterval);
+  }
+});
+
+function startAnimation() {
+  animationInterval = setInterval(() => {
+    const currentTransform = getComputedStyle(train).transform;
+    const currentTranslateX = getCurrentTranslateX(currentTransform);
+
+    train.style.transform = `translateX(${currentTranslateX + 10}px)`;
+  }, 100);
+}
+
+function getCurrentTranslateX(transform) {
+  const matrix = transform.match(/matrix\((.+)\)/);
+  if (matrix) {
+    const matrixValues = matrix[1].split(", ");
+    return parseFloat(matrixValues[4]);
+  } else {
+    return 0;
+  }
+}</script>
+</body>
+</html>
